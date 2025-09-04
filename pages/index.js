@@ -1,5 +1,7 @@
 import Image from "next/image";
 import { Geist, Geist_Mono } from "next/font/google";
+import { useAtom } from "jotai";
+import { countAtom } from "@/jotai/atom";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -12,6 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export default function Home() {
+  const [count] = useAtom(countAtom)
   return (
     <div
       className={`${geistSans.className} ${geistMono.className} font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20`}
@@ -29,7 +32,7 @@ export default function Home() {
           <li className="mb-2 tracking-[-.01em]">
             Get started by editing{" "}
             <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              pages/index.js
+              pages/index.js {count}
             </code>
             .
           </li>
